@@ -18,6 +18,17 @@ model Post {
   published Boolean   @default(false)
   userId    String 
   user      User      @relation(fields: [userId], references: [id])
+  comment   Comment[]
+}
+
+model Comment{
+  id        String   @id @default(cuid())
+  message   String
+  postId    String
+  userId    String
+  createdAt DateTime @default(now())
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id])
 }
 
 model Account {
@@ -56,6 +67,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   post          Post[]
+  comment   Comment[]
 }
 
 model VerificationToken {

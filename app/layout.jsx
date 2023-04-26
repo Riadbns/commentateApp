@@ -1,7 +1,6 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
 import Nav from "./auth/Nav"
-const inter = Inter({ subsets: ['latin'] })
+import QueryWrapper from'./auth/QueryWrapper'
 
 export const metadata = {
   title: 'Create Next App',
@@ -12,9 +11,11 @@ export default function RootLayout({children}){
   return (
     <html lang="en">
 
-      <body className={`${inter.className} mx-4 md:mx-48 xl:mx-96 bg-gray-200`}>
-        <Nav />
-        {children}
+      <body className={`mx-4 md:mx-48 xl:mx-96 bg-gray-200`}>
+        <QueryWrapper>
+          <Nav />
+          {children}
+        </QueryWrapper>
       </body>
     </html>
   )
